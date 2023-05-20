@@ -45,9 +45,12 @@ const Login = () => {
   const onSubmit = (event) =>{
     event.preventDefault()
 
-    const userData = { email, password }
-
-    dispatch(login(userData))
+    if(!password || !email){
+      toast.error('LLena los campos requeridos')
+    }else{
+      const userData = { email, password }
+      dispatch(login(userData))
+    }
   }
 
   if (isLoading){

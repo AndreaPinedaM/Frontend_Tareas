@@ -9,8 +9,6 @@ import Register from './pages/Register'
 function App() {
 
   return (
-
-
     <>
       <Router>
         <div className='container'>

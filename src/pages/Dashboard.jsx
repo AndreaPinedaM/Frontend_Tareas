@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import { useSelector } from "react-redux" //estado global redux
+import { useSelector } from "react-redux" 
+
 
 const Dashboard = () => {
 

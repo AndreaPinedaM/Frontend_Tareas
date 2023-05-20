@@ -6,7 +6,7 @@ import { FaUser } from 'react-icons/fa'
 import Spinner from '../components/Spinner'
 import { register, reset } from '../features/auth/authSlice'
 
-const Register = () => {
+const Register = () => { 
 
   const [formData, setFormData] = useState({
     name: '',
@@ -15,6 +15,9 @@ const Register = () => {
     password2: ''
   }) 
 
+  /* Using destructuring assignment to extract the properties `name`, `email`, `password`, and
+  `password2` from the `formData` object and assign them to separate constants with the same names.
+  This allows for easier access to these values in the component. */
   const {name, email, password, password2} =formData
 
   const navigate = useNavigate()
@@ -62,7 +65,6 @@ const Register = () => {
   return (
     <div>
         <section className="heading">
-          
           <h4>
             <FaUser /> Registrar
           </h4>
