@@ -11,20 +11,21 @@ const Login = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: ''
-  }) 
+  })
 
-  const {email, password} =formData
+  const { email, password } = formData
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const {user, isLoading, isError, isSuccess, message} = useSelector((state) => state.auth)
+  const { isLoading, isError, isSuccess, message } = useSelector((state) => state.auth)
+  const user = JSON.parse(sessionStorage.getItem('user'))
 
-  useEffect(() =>{
-    if (isError){
+  useEffect(() => {
+    if (isError) {
       toast.error(message)
     }
-    if (isSuccess){
+    if (isSuccess) {
       navigate('/') //Dashboard
     }
     dispatch(reset())
@@ -32,7 +33,7 @@ const Login = () => {
 
 
   const onChange = (event) => {
-    setFormData((prevState)=>({
+    setFormData((prevState) => ({
       /* `...prevState` is spreading the previous state of the `formData` object, which means it is
       creating a new object with all the properties and values of the previous state. This is done
       to ensure that any existing data in the state is not lost when updating a single property. 
@@ -42,58 +43,58 @@ const Login = () => {
     }))
   }
 
-  const onSubmit = (event) =>{
+  const onSubmit = (event) => {
     event.preventDefault()
 
-    if(!password || !email){
+    if (!password || !email) {
       toast.error('LLena los campos requeridos')
-    }else{
+    } else {
       const userData = { email, password }
       dispatch(login(userData))
     }
   }
 
-  if (isLoading){
+  if (isLoading) {
     return <Spinner></Spinner>
   }
 
   return (
     <div>
-        <section className="heading">
-          <h4>
-            <FaSignInAlt /> Login
-          </h4>
-          <p>Teclea tus credenciales</p>
-        </section>
-        <section className="form">
-          <form onSubmit={onSubmit}>
-            <div className="form-group">
-              <input className="form-control" 
-                type="text" 
-                name='email' 
-                id='email' 
-                value={email} 
-                placeholder="Teclea tu email"
-                autoComplete="email"
-                onChange={onChange}/>
+      <section className="heading">
+        <h4>
+          <FaSignInAlt /> Login
+        </h4>
+        <p>Teclea tus credenciales</p>
+      </section>
+      <section className="form">
+        <form onSubmit={onSubmit}>
+          <div className="form-group">
+            <input className="form-control"
+              type="text"
+              name='email'
+              id='email'
+              value={email}
+              placeholder="Teclea tu email"
+              autoComplete="email"
+              onChange={onChange} />
 
-              <input className="form-control" 
-                type="password" 
-                name='password' 
-                id='password' 
-                value={password} 
-                placeholder="Introduce una contraseña"
-                autoComplete="password"
-                onChange={onChange}/>
-            </div>
-            <div className="form-group">
-              <button
-                type="submit"
-                className="btn btn-block">Submit
-              </button>
-            </div>
-          </form>
-        </section>
+            <input className="form-control"
+              type="password"
+              name='password'
+              id='password'
+              value={password}
+              placeholder="Introduce una contraseña"
+              autoComplete="password"
+              onChange={onChange} />
+          </div>
+          <div className="form-group">
+            <button
+              type="submit"
+              className="btn btn-block">Submit
+            </button>
+          </div>
+        </form>
+      </section>
     </div>
   )
 }
